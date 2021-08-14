@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <style>
+            .h1{
+                background-color:lightyellow;
+                padding:20px;
+                color:green;
+
+            
+            }
+            .sub{
+                background-color:lightblue;
+                border-style: solid;
+                width:50vw;
+                padding : 20px;
+                justify-content:centre;
+            }
+            body{
+                background-color:lightyellow;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="h1"><h1>{{todolist.list_name}}</h1></div>
+            <ul>
+                
+                {% for item in items_list %}
+                <div class = "sub">
+                <h2>Description of your todo : {{item.title}}</h2><br>
+                <h2>Your Todo dues on : {{item.due_date}}</h2><br>
+                <h2>on Time :{{item.due_tim}}</h2><br>
+                </div>
+         <div class="h1"><h1> You can update your Todo here </h1></div>
+                <div class = "sub">
+                <form method=post action="/todo/update/">
+                {% csrf_token %}
+                <input type="date" id="date" name="date"  value=""><br><br>
+                <input type="text" id="title" name="title" value={{item.title}}><br><br>
+                <input type="time" id="time" name="time" value={{item.due_tim}}><br><br>
+                <button id = "name" name = "name" value = {{todolist.list_name}}>submit</button>
+                </form>
+                </div>
+                {% comment %} <li><h2>{{item.title}}</h2></li>
+                <li><h2>{{item.due_date}}</h2></li>
+                <li><h2>{{item.due_tim}}</h2></li>
+                
+                <li><h2>Done <input type = "checkbox" value = {{item.checked}}></h2></li> {% endcomment %}
+
+                
+                
+                {% endfor %}
+            </ul>
+            <a href="#" onclick="javascript:window.history.back(-1);return false;"><button>Back</button></a>
+
+    </body>
+</html>
+
